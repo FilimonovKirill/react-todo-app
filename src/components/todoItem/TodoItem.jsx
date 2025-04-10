@@ -1,4 +1,26 @@
-export default function TodoItem({ todo, onDelete, onToggle }) {
+import { useState } from 'react';
+
+export default function TodoItem({ todo, onDelete, onToggle, onEdit }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [editText, setEditText] = useState(todo.text);
+
+    const handleEdit = () => {
+        setIsEditing(true);
+        setEditText(todo.text);
+    }
+
+    const handleSave = () => {
+        if (editText.trim() !== '') {
+            onEdit(editText);
+            setIsEditing(false);
+        }
+    }
+
+    const handleCancel = () => {
+        setEditText(todo.text);
+        setIsEditing(false);
+    }
+
     return (
         <li style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
             <input 
@@ -7,7 +29,23 @@ export default function TodoItem({ todo, onDelete, onToggle }) {
                 onChange={onToggle}
                 style={{ marginRight: '10px' }}
             />
-            <div 
+            {isEditing ? (
+                <div style={{ flex: 1}}>
+                    <input 
+                        type="text"
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                        style={{ marginRight: '10px', padding: '5px'}}
+                    />
+                    <button onClick={handleSave} style={{ marginRight: '5px' }}>
+                        Save
+                    </button>
+                    <button onClick={handleCancel}>
+                        Cancel
+                    </button>
+                </div>
+            ) : (
+                <div 
                 onClick={onToggle} 
                 style={{
                     flex: 1,
@@ -21,12 +59,17 @@ export default function TodoItem({ todo, onDelete, onToggle }) {
             >
                 {todo.text}
             </div>
-            <button 
-                onClick={onDelete} 
-                style={{ marginLeft: '10px', cursor: 'pointer' }}
-            >
-                Удалить
-            </button>
+            )}
+            <div style={{ display: 'flex', gap: '10px'}}>
+                {!isEditing && (
+                    <button onClick={handleEdit} style={{ cursor: 'pointer' }}>
+                        Edit
+                    </button>
+                )}
+                <button onClick={onDelete} style={{ marginLeft: '10px', cursor: 'pointer' }}>
+                    Delete
+                </button>
+            </div>
         </li>
     );
 }

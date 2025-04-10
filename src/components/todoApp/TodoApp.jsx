@@ -26,6 +26,13 @@ function TodoApp() {
     )
   }
 
+  const editTodo = (index, newText) => {
+    setTodos(
+      todos.map((todo, i) => 
+      i === index ? { ...todo, text: newText } : todo)
+    )
+  }
+
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos])
@@ -34,7 +41,7 @@ function TodoApp() {
     <div>
       <h1>Todo List</h1>
       <TodoInput newTodo={newTodo} setNewTodo={setNewTodo} addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} toggleTodo={toggleTodo}/>
+      <TodoList todos={todos} deleteTodo={deleteTodo} toggleTodo={toggleTodo} editTodo={editTodo}/>
     </div>
   );
 }

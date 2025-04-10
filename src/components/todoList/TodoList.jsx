@@ -1,6 +1,6 @@
 import TodoItem from "../todoItem/todoItem"
 
-export default function TodoList({ todos, deleteTodo, toggleTodo }) {
+export default function TodoList({ todos, deleteTodo, toggleTodo, editTodo }) {
     return (
         <ul>
             {todos.map((todo, index) => (
@@ -9,6 +9,7 @@ export default function TodoList({ todos, deleteTodo, toggleTodo }) {
                     todo={todo} 
                     onDelete={() => deleteTodo(index)} 
                     onToggle={() => toggleTodo(index)}
+                    onEdit={(newText) => editTodo(index, newText)}
                 />
             ))}
         </ul>
