@@ -8,6 +8,7 @@ export default function TodoInput({ newTodo, setNewTodo, addTodo }) {
                 value={newTodo}
                 onChange={(e) => setNewTodo(e.target.value)}
                 placeholder="Введите задачу"
+                maxLength={100}
             />
             <AddButton onClick={addTodo}/>
         </div>
