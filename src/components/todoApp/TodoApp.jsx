@@ -84,6 +84,15 @@ function TodoApp() {
         setTodos(updatedTodos);
     }
 
+    const deleteSubtask = (taskIndex, subtaskId) => {
+        const updatedTodos = [...todos];
+        const task = updatedTodos[taskIndex];
+
+        task.subtasks = task.subtasks.filter((subtask) => subtask.id !== subtaskId);
+
+        setTodos(updatedTodos);
+    }
+
     const indexOfLastTask = currentPage * tasksPerPage;
     const indexOfFirstTask = indexOfLastTask - tasksPerPage;
     const currentTasks = todos.slice(indexOfFirstTask, indexOfLastTask);
@@ -105,7 +114,8 @@ function TodoApp() {
                 editTodo={editTodo}
                 addSubtask={addSubtask}
                 toggleSubtask={toggleSubtask}
-                editSubtask={editSubtask}/>
+                editSubtask={editSubtask}
+                deleteSubtask={deleteSubtask}/>
             {totalPages > 1 && (
             <div style={{ marginTop: '20px', textAlign: 'center' }}>
             {pageNumbers.map((number) => (
