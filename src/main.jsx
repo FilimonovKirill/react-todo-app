@@ -4,7 +4,7 @@ import './index.css'
 import TodoApp from './components/todoApp/TodoApp.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <TodoApp />
-  </StrictMode>,
+    <StrictMode>
+        <TodoApp />
+    </StrictMode>,
 )
