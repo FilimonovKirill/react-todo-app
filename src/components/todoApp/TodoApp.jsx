@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import TodoInput from '../todoInput/todoInput';
 import TodoList from '../todoList/TodoList';
 
+import './todoApp.css'
+
 function TodoApp() {
     const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem('todos');
@@ -104,9 +106,11 @@ function TodoApp() {
     }, [todos])
 
     return (
-        <div>
-            <h1>Todo List</h1>
-            <TodoInput newTodo={newTodo} setNewTodo={setNewTodo} addTodo={addTodo} />
+        <div className='todo-app'>
+            <h1 className='todo-app__title'>Todo List</h1>
+            <div className="todo-app__input">
+                <TodoInput newTodo={newTodo} setNewTodo={setNewTodo} addTodo={addTodo} />
+            </div>
             <TodoList 
                 todos={currentTasks}
                 deleteTodo={deleteTodo}
@@ -117,20 +121,14 @@ function TodoApp() {
                 editSubtask={editSubtask}
                 deleteSubtask={deleteSubtask}/>
             {totalPages > 1 && (
-            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <div className="todo-app__pagination">
             {pageNumbers.map((number) => (
                 <button
                     key={number}
                     onClick={() => setCurrentPage(number)}
-                    style={{
-                        margin: '0 5px',
-                        padding: '5px 10px',
-                        backgroundColor: currentPage === number ? '#4caf50' : '#f0f0f0',
-                        color: currentPage === number ? '#fff' : '#000',
-                        border: '1px solid #ccc',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                    }}
+                    className={`todo-app__page-button ${
+                        currentPage === number ? 'todo-app__page-button--active' : ''
+                    }`}
                 >
                 {number}
                 </button>

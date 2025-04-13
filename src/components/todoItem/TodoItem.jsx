@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import './todoItem.css';
+
 export default function TodoItem({
     todo,
     onDelete,
@@ -38,102 +40,105 @@ export default function TodoItem({
     };
 
     return (
-    <li style={{ marginBottom: '20px', listStyleType: 'none' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+    <li className='todo-item'>
+        <div className='todo-item__content'>
             <input
                 type="checkbox"
                 checked={todo.completed}
                 onChange={onToggle}
-                style={{ marginRight: '10px' }}
+                className='todo-item__checkbox'
             />
             {isEditing ? (
                 <div style={{ flex: 1 }}>
-                <input
-                    type="text"
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
-                    style={{ marginRight: '10px', padding: '5px' }}
-                />
-                <button onClick={handleSave} style={{ marginRight: '5px' }}>
-                    Save
-                </button>
-                <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    <input
+                        type="text"
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                        className='todo0item__edit-input'
+                    />
+                    <button onClick={handleSave} className='todo-item__button'>
+                        Save
+                    </button>
+                    <button onClick={() => setIsEditing(false)} className='todo-item__button'>
+                        Cancel
+                    </button>
                 </div>
             ) : (
                 <div
-                onClick={onToggle}
-                style={{
-                    flex: 1,
-                    cursor: 'pointer',
-                    padding: '5px 10px',
-                    textDecoration: todo.completed ? 'line-through' : 'none',
-                    backgroundColor: todo.completed ? '#e0e0e0' : 'transparent',
-                    borderRadius: '5px',
-                    transition: 'background-color 0.2s',
-                }}
+                    onClick={onToggle}
+                    className={`todo-item__text ${todo.completed ? 'todo-item__text--completed' : ''}`}
                 >
                 {todo.text}
                 </div>
             )}
-            <div style={{ display: 'flex', gap: '10px' }}>
-                <button onClick={() => setIsAddingSubtask(true)} style={{ cursor: 'pointer' }}>
-                Add Subtask
+            <div className='todo-item__actions'>
+                <button
+                    onClick={() => setIsAddingSubtask(true)}
+                    className="todo-item__button add-button"
+                >
+                    Add Subtask
                 </button>
                 {!isEditing && (
-                <button onClick={handleEdit} style={{ cursor: 'pointer' }}>
-                    Edit
-                </button>
+                    <button
+                        onClick={handleEdit}
+                        className="todo-item__button edit-button"
+                    >
+                        Edit
+                    </button>
                 )}
-                <button onClick={onDelete} style={{ marginLeft: '10px', cursor: 'pointer' }}>
-                Delete
+                <button
+                    onClick={onDelete}
+                    className="todo-item__button delete-button"
+                >
+                    Delete
                 </button>
             </div>
         </div>
 
         {isAddingSubtask && (
-        <div style={{ marginTop: '10px' }}>
-            <input
-                type="text"
-                value={subtaskText}
-                onChange={(e) => setSubtaskText(e.target.value)}
-                placeholder="Enter subtask"
-                maxLength={20}
-                style={{ marginRight: '10px', padding: '5px' }}
-            />
-            <button onClick={handleAddSubtask}>Add</button>
-            <button onClick={() => setIsAddingSubtask(false)} style={{ marginLeft: '5px' }}>
-            Cancel
-            </button>
-        </div>
-        )}
+            <div className="todo-item__subtask-form">
+                <input
+                    type="text"
+                    value={subtaskText}
+                    onChange={(e) => setSubtaskText(e.target.value)}
+                    className="todo-item__subtask-input"
+                    placeholder="Enter subtask"
+                />
+                <button onClick={handleAddSubtask} className="todo-item__subtask-add-button">
+                    Add
+                </button>
+                <button onClick={() => setIsAddingSubtask(false)} className="todo-item__subtask-cancel-button">
+                    Cancel
+                </button>
+            </div>
+            )}
 
         {todo.subtasks && todo.subtasks.length > 0 && (
-            <ul style={{ marginTop: '10px', paddingLeft: '20px', listStyleType: 'circle' }}>
+            <ul className='todo-item__subtasks'>
                 {todo.subtasks.map((subtask) => (
-                <li key={subtask.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+                <li key={subtask.id} className='todo-item__subtask'>
                     <input
                     type="checkbox"
                     checked={subtask.completed}
                     onChange={() => onToggleSubtask(subtask.id)}
-                    style={{ marginRight: '10px' }}
+                    className='todo-item__subtask-checkbox'
                     />
                 <span
-                    style={{
-                        textDecoration: subtask.completed ? 'line-through' : 'none',
-                        flex: 1,
-                    }}
+                    className={`todo-item__subtask-text ${
+                        subtask.completed ? 'todo-item__subtask-text--completed' : ''
+                    }`}
                 >
                 {subtask.text}
                 </span>
                 <button
                     onClick={() => onEditSubtask(subtask.id, prompt('Edit subtask:', subtask.text))}
-                    style={{ marginLeft: '10px' }}
+                    className="todo-item__subtask-button edit-button"
                 >
                     Edit
                 </button>
                 <button
                     onClick={() => onDeleteSubtask(subtask.id)}
-                    style={{ marginLeft: '5px' }}
+                    className="todo-item__subtask-button delete-button"
                 >
                     Delete
                 </button>

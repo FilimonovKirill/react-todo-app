@@ -1,5 +1,7 @@
 import TodoItem from "../todoItem/todoItem"
 
+import './todoList.css';
+
 export default function TodoList({
     todos,
     deleteTodo,
@@ -11,7 +13,7 @@ export default function TodoList({
     deleteSubtask
 }) {
     return (
-        <ul>
+        <ul className="todo-list">
             {todos.map((todo, index) => (
                 <TodoItem 
                     key={index} 

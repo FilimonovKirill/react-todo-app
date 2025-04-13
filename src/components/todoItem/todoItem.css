@@ -1,0 +1,116 @@
+.todo-item {
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+.todo-item__content {
+    display: flex;
+    align-items: center;
+}
+
+.todo-item__checkbox {
+    margin-right: 10px;
+}
+
+.todo-item__text {
+    flex: 1;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.todo-item__text--completed {
+    text-decoration: line-through;
+    background-color: #e0e0e0;
+}
+
+.todo-item__actions {
+    display: flex;
+    gap: 10px;
+}
+
+.todo-item__button {
+    cursor: pointer;
+}
+
+.todo-item__subtasks {
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.todo-item__subtask {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.todo-item__subtask-checkbox {
+    margin-right: 10px;
+}
+
+.todo-item__subtask-text {
+    flex: 1;
+}
+
+.todo-item__subtask-text--completed {
+    text-decoration: line-through;
+}
+
+.todo-item__subtask-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.todo-item__subtask-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.todo-item__subtask-input:focus {
+    border-color: #4caf50;
+}
+
+.todo-item__subtask-add-button {
+    padding: 8px 15px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.todo-item__subtask-add-button:hover {
+    background-color: #45a049;
+}
+
+.todo-item__subtask-cancel-button {
+    padding: 8px 15px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.todo-item__subtask-cancel-button:hover {
+    background-color: #e53935;
+}

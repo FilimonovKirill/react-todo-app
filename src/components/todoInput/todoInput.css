@@ -1,0 +1,19 @@
+.todo-input {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .todo-input__field {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .todo-input__field:focus {
+    border-color: #4caf50;
+  }
