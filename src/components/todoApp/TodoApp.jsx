@@ -16,7 +16,7 @@ function TodoApp() {
             alert('You can only have  maximum of 100 tasks.')
         }
         if (newTodo.trim() !== '') {
-            setTodos([...todos, { text: newTodo.trim(), completed: false, subtasks: [] }]);
+            setTodos([{ text: newTodo.trim(), completed: false, subtasks: [] }, ...todos]);
             setNewTodo('');
         }
     };
